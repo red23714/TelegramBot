@@ -1,30 +1,20 @@
 from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton, 
-                           InlineKeyboardMarkup, InlineKeyboardButton)
+                           InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove)
 
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
-main = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Каталог', callback_data='catalog')],
-    [InlineKeyboardButton(text='Корзина', callback_data='basket'), 
-     InlineKeyboardButton(text='Контакты', callback_data='contacts')]
+mainMenu = ReplyKeyboardMarkup(keyboard=[
+    [KeyboardButton(text='ПРОФИЛЬ')],
+    [KeyboardButton(text='ПОДПИСКА')] 
 ],
                            resize_keyboard=True,
                            input_field_placeholder='Выберите пункт меню.')
 
-settings = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='YouTube', url='https://youtube.com/')]
-])
+rm = ReplyKeyboardRemove()
 
-cars = ['Tesla', 'Mersedes', 'BMW']
 
-async def reply_cars():
-    keyboard = ReplyKeyboardBuilder()
-    for car in cars:
-        keyboard.add(KeyboardButton(text=car))
-    return keyboard.adjust(2).as_markup()
-
-async def inline_cars():
-    keyboard = InlineKeyboardBuilder()
-    for car in cars:
-        keyboard.add(InlineKeyboardButton(text=car, url='https://youtube.com/'))
-    return keyboard.adjust(2).as_markup()
+sub_inline_markup = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="Месяц - 150 рублей", callback_data="submonth")],
+],
+                            resize_keyboard=True,
+                            input_field_placeholder='Выберите пункт меню.')
